@@ -12,8 +12,7 @@ public class nine_eight {
         TreeNode t6 = new TreeNode(6);
         t5.right=t4;
         t4.left=t3;
-        isValidBST(t5);
-
+//        isValidBST(t5);
     }
 
 //    public static boolean isValidBST(TreeNode root) {
