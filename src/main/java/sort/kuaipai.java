@@ -57,49 +57,80 @@ public class kuaipai {
 //        return array;
 //    }
     //快排
+//    public static void sort(int[] nums,int left,int right){
+//        //什么情况可以不用继续排序
+//        if(left>=right)
+//            return;
+//        Stack<Integer> i = new Stack<>();
+//
+//        //标准选择nums[left]
+//        int temp=nums[left];
+//        //p为左指针，q为右指针
+//        //flag为true，向右，为false向左
+//        boolean flag=true;
+//        int p=left;
+//        int q=right;
+//        while(q!=p){
+//            //向右
+//            if(flag){
+//                if(nums[q]<temp){
+//                    nums[p]=nums[q];
+//                    p++;
+//                    flag=false;
+//                    continue;
+//                }
+//                else {
+//                    q--;
+//                    continue;
+//                }
+//            }
+//            //向左
+//            else {
+//                if(nums[p]>temp){
+//                    nums[q]=nums[p];
+//                    q--;
+//                    flag=true;
+//                    continue;
+//                }
+//                else {
+//                    p++;
+//                    continue;
+//                }
+//            }
+//        }
+//        nums[p]=temp;
+//
+//        sort(nums,left,p-1);
+//        sort(nums,p+1,right);
+//
+//    }
+
+    //
     public static void sort(int[] nums,int left,int right){
-        //什么情况可以不用继续排序
         if(left>=right)
             return;
-        Stack<Integer> i = new Stack<>();
-     
-        //标准选择nums[left]
-        int temp=nums[left];
-        //p为左指针，q为右指针
-        //flag为true，向右，为false向左
-        boolean flag=true;
-        int p=left;
-        int q=right;
-        while(q!=p){
-            //向右
-            if(flag){
-                if(nums[q]<temp){
-                    nums[p]=nums[q];
-                    p++;
-                    flag=false;
-                    continue;
-                }
-                else {
-                    q--;
-                    continue;
-                }
-            }
-            //向左
-            else {
-                if(nums[p]>temp){
-                    nums[q]=nums[p];
-                    q--;
-                    flag=true;
-                    continue;
-                }
-                else {
-                    p++;
-                    continue;
-                }
-            }
-        }
-        nums[p]=temp;
 
+        //排序
+        int temp=nums[left];
+        int p =left;
+        int q=right;
+        //开始
+        boolean flag = true; //true 往右
+        while (p<q){
+            //比较的值在右边
+            while (nums[q]>temp&&p<q)
+                q--;
+            nums[p]=nums[q];
+            p++;
+            //比较的值在左边
+            while (nums[p]<temp&&p<q)
+                p++;
+            nums[q] = nums[p];
+            q--;
+        }
+
+        //排序结束
+        nums[p]=temp;
         sort(nums,left,p-1);
         sort(nums,p+1,right);
 
